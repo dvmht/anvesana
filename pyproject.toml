@@ -1,0 +1,44 @@
+[project]
+name = "anvesana"
+version = "0.1.0"
+description = "Anvesana (Sanskrit): search after, seek for, or inquiry into. Search through Vedic texts with ease."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "gradio>=5.34.0",
+    "langchain>=0.3.25",
+    "langchain-chroma>=0.2.4",
+    "langchain-google-genai>=2.1.5",
+    "langchain-huggingface>=0.3.0",
+    "python-dotenv>=1.1.0",
+    "requests>=2.32.4",
+    "tqdm>=4.67.1",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "isort>=6.0.1",
+]
+torch = [
+    "sentence-transformers>=4.1.0",
+    "torch>=2.7.0",
+]
+
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu128", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+
+[tool.setuptools]
+packages = ["app", "data"]
+
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"

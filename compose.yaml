@@ -1,0 +1,12 @@
+
+services:
+  anvesana:
+    build:
+      context: .
+    image: dvmht/anvesana:latest
+    container_name: anvesana
+    restart: always
+    ports:
+      - "7860:7860"
+    command: python app/main.py
+    env_file: .env
