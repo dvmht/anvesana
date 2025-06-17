@@ -1,3 +1,11 @@
+---
+title: Anvesana
+emoji: 🐢
+colorFrom: pink
+colorTo: purple
+sdk: docker
+pinned: false
+---
 # Anveṣaṇā 🐢
 
 >**_/ənʋeːʂəɳɑː/ · Sanskrit: अन्वेषणा_**  
@@ -37,4 +45,3 @@ This project would not be possible without the extensive resources at [Caraka Sa
 
 
 [1]: https://www.carakasamhitaonline.com/index.php?title=Main_Page
-
