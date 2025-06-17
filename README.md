@@ -1,4 +1,4 @@
-# Anveṣaṇā
+# Anveṣaṇā 🐢
 
 >**_/ənʋeːʂəɳɑː/ · Sanskrit: अन्वेषणा_**  
 search after, seek for, or inquiry into.  
