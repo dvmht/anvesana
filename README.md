@@ -27,7 +27,7 @@ More texts coming soon.
 
 ## Usage
 You can use Anvesana to ask questions about the texts.  
-The Anvesana demo app is available [here](https://huggingface.co/spaces/dvmht/anvesana).  
+The Anvesana demo app is available [here](https://anvesana-285115912145.europe-west2.run.app/).  
 You can also run Anvesana locally using Docker.
 
 ### Local Setup
