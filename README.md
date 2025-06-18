@@ -48,7 +48,7 @@ Anvesana requires a Google AI Studio API key to function (free tier). Set the Go
    ```
 
 ### Docker Setup
-You can also run Anvesana locally using Docker. This does not require cloning the repo or setup of the local database.
+You can also run Anvesana locally using Docker. This does not require cloning the repo or setup of the local database. The app runs on port 7860.
 1. Pull the Docker image:
    ```bash
    docker pull docker.io/dvmht/anvesana:latest
