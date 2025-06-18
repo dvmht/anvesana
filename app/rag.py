@@ -1,3 +1,5 @@
+import logging
+
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
 from langchain_core.vectorstores import VectorStoreRetriever
@@ -5,6 +7,8 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 from app.config import MODEL_WEIGHTS_DIR, PERSIST_DIR
 
+
+logger = logging.getLogger("app.rag")
 
 class EmbeddingModel:
     def __init__(
@@ -27,16 +31,16 @@ class EmbeddingModel:
 
     def load_model(self):
         if self.embedding_model is not None:
-            print(f"Model {self.model_name} is already loaded.")
+            logger.debug(f"Model {self.model_name} is already loaded.")
             return
         try:
-            print(f"Loading embedding model {self.model_name}...")
+            logger.info(f"Loading embedding model {self.model_name}...")
             self.embedding_model = HuggingFaceEmbeddings(
                 model_name=self.model_name, cache_folder=MODEL_WEIGHTS_DIR
             )
-            print(f"Model {self.model_name} loaded successfully.")
+            logger.info(f"Model {self.model_name} loaded successfully.")
         except Exception as e:
-            print(f"Error loading model {self.model_name}: {e}")
+            logger.error(f"Error loading model {self.model_name}: {e}")
             self.embedding_model = None
 
     def encode(self, texts: list[str]) -> list[list[float]]:
@@ -73,11 +77,11 @@ class EmbeddingModel:
             raise ValueError("Model is not loaded. Please load the model first.")
 
         if self.vector_store is not None:
-            print(
+            logger.debug(
                 f"Vector store for collection '{self.collection_name}' already exists. It will be overwritten."
             )
 
-        print(
+        logger.info(
             f"Saving embeddings to {persist_directory} in collection '{self.collection_name}'..."
         )
         self.vector_store = Chroma.from_documents(
@@ -86,7 +90,7 @@ class EmbeddingModel:
             collection_name=self.collection_name,
             persist_directory=persist_directory,
         )
-        print(
+        logger.info(
             f"Embeddings saved to {persist_directory} in collection '{self.collection_name}'."
         )
         return self.vector_store
@@ -103,16 +107,20 @@ class EmbeddingModel:
             Chroma: The loaded vector store.
         """
         if self.vector_store is not None:
-            print(
+            logger.debug(
                 f"Vector store for collection '{self.collection_name}' already exists. It will be overwritten."
             )
 
+
+        logger.info(
+            f"Loading embeddings from {persist_directory} in collection '{self.collection_name}'..."
+        )
         self.vector_store = Chroma(
             embedding_function=self.embedding_model,
             collection_name=self.collection_name,
             persist_directory=persist_directory,
         )
-        print(
+        logger.info(
             f"Embeddings loaded from {persist_directory} in collection '{self.collection_name}'."
         )
         return self.vector_store

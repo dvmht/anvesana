@@ -1,10 +1,13 @@
 import json
+import logging
 
 from app.rag import EmbeddingModel
 from app.config import RAW_DATA_PATH
 from data.chunk import chunk_data
 from data.ingest import get_all_data, get_all_pages
 
+
+logger = logging.getLogger("data")
 
 
 def save_raw_data(data: list[dict], file_path: str) -> None:
@@ -32,24 +35,24 @@ def read_raw_data(file_path: str) -> list[dict]:
     """
 
     try:
-        print(f"Reading raw data from {file_path}...")
+        logging.info(f"Reading raw data from {file_path}...")
         with open(file_path, "r", encoding="utf-8") as f:
             return json.load(f)
-        print(f"Raw data read successfully from {file_path}.")
+        logging.info(f"Raw data read successfully from {file_path}.")
     except FileNotFoundError:
-        print(f"File {file_path} not found. Please run the data ingestion first.")
+        logger.error(f"File {file_path} not found. Please run the data ingestion first.")
         return []
 
 
 def main():
     # Get the raw data. Scrape it if it doesn't exist.
     if not (all_data := read_raw_data(RAW_DATA_PATH)):
-        print("No raw data found. Starting data ingestion...")
+        logger.warning("No raw data found. Starting data ingestion...")
         pages = get_all_pages()
         all_data = get_all_data(pages)
         save_raw_data(all_data, RAW_DATA_PATH)
 
-    print(f"Dataset contains {len(all_data)} pages.")
+    logger.debug(f"Dataset contains {len(all_data)} pages.")
     # Chunk the data into smaller pieces for processing.
     chunked_docs = chunk_data(all_data)
 

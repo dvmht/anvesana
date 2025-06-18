@@ -1,7 +1,11 @@
+import logging
 import requests
 from tqdm import tqdm
 
 from app.config import API_URL
+
+
+logger = logging.getLogger("data.ingest")
 
 
 def get_all_pages(limit: int = 500, api_url: str = API_URL) -> list:
@@ -19,7 +23,7 @@ def get_all_pages(limit: int = 500, api_url: str = API_URL) -> list:
     if not api_url:
         raise ValueError("API URL is not set. Please check environment variables.")
 
-    print(f"Fetching all page titles from {api_url} ...")
+    logger.info(f"Fetching all page titles from {api_url} ...")
     titles = []
     apcontinue = ""
     i = 0
@@ -39,11 +43,11 @@ def get_all_pages(limit: int = 500, api_url: str = API_URL) -> list:
         titles.extend([p["title"] for p in pages])
 
         i += 1
-        print(f"{i}/?. Fetched {len(pages)} titles (Total: {len(titles)}).")
+        logger.debug(f"{i}/?. Fetched {len(pages)} titles (Total: {len(titles)}).")
         apcontinue = data.get("continue", {}).get("apcontinue")
         if not apcontinue:
             break
-    print(f"{i}/{i}. Fetched total of {len(titles)} titles.")
+    logger.info(f"{i}/{i}. Fetched total of {len(titles)} titles.")
     return titles
 
 
@@ -60,7 +64,7 @@ def get_all_data(pages: list[str], api_url: str = API_URL) -> list[dict[str, str
     """
 
     all_page_data = []
-    print(f"Extracting text content from {len(pages)} pages...")
+    logger.info(f"Extracting text content from {len(pages)} pages...")
     for title in tqdm(pages):
         text, url = get_page_text_and_url(title, api_url)
         if text.strip():  # skip empty pages
