@@ -31,7 +31,7 @@ def get_response(
     for i, doc in enumerate(sources):
         title = doc.metadata.get("title", "-")
         link = doc.metadata.get("link", "")
-        citations += f"{i+1}. [{title}]({link})\n"
+        citations += f"{i+1}. [{title}]({link})\n"  # Format citations with Markdown links
     response = f"{answer}\n\n**Sources:**\n{citations}"
     # history.append(
     #     {"role": "user", "content": query},
