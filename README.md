@@ -26,11 +26,29 @@ The following texts are currently supported:
 More texts coming soon.
 
 ## Usage
-You can use Anvesana to ask questions about the texts.
+You can use Anvesana to ask questions about the texts.  
+The Anvesana demo app is available [here](https://huggingface.co/spaces/dvmht/anvesana).  
+You can also run Anvesana locally using Docker.
 
-### Setup
-Anvesana requires a Google AI Studio API key to function (free tier).  
-Ensure the key is set in the environment variable `GOOGLE_AI_API_KEY`.
+### Local Setup
+Anvesana uses a local database to store the text data and requires a Google AI Studio API key to function (free tier). This needs to be set up once before running the app.  
+1. Set the text source API URL in the `API_URL` environment variable.
+   ```bash
+    export API_URL=https://www.carakasamhitaonline.com/api.php
+    ```
+
+2. Run the following command to set up the database:
+   ```bash
+   python data/main.py
+   ```
+   This will create a SQLite database file `./data/` directory.
+
+
+3. Set the Google AI Studio API key in the `GOOGLE_AI_API_KEY` environment variable.
+   ```bash
+   export GOOGLE_AI_API_KEY=your_api_key_here
+   ```
+
 
 ### Example Queries
 Unsure what to ask? Why not start with:
