@@ -26,12 +26,10 @@ The following texts are currently supported:
 More texts coming soon.
 
 ## Usage
-You can use Anvesana to ask questions about the texts.  
 The Anvesana demo app is available [here](https://anvesana-285115912145.europe-west2.run.app/).  
-You can also run Anvesana locally using Docker.
 
 ### Local Setup
-Anvesana uses a local database to store the text data and requires a Google AI Studio API key to function (free tier). This needs to be set up once before running the app.  
+Anvesana uses a local database to store the text data. This needs to be set up once before running the app for the first time.  
 1. Set the text source API URL in the `API_URL` environment variable.
    ```bash
     export API_URL=https://www.carakasamhitaonline.com/api.php
@@ -43,11 +41,25 @@ Anvesana uses a local database to store the text data and requires a Google AI S
    ```
    This will create a SQLite database file `./data/` directory.
 
-
-3. Set the Google AI Studio API key in the `GOOGLE_AI_API_KEY` environment variable.
+\
+Anvesana requires a Google AI Studio API key to function (free tier). Set the Google AI Studio API key in the `GOOGLE_API_KEY` environment variable:
    ```bash
-   export GOOGLE_AI_API_KEY=your_api_key_here
+   export GOOGLE_API_KEY=your_api_key_here
    ```
+
+### Docker Setup
+You can also run Anvesana locally using Docker. This does not require cloning the repo or setup of the local database.
+1. Pull the Docker image:
+   ```bash
+   docker pull docker.io/dvmht/anvesana:latest
+   ```
+2. Run the Docker container:
+   ```bash
+   docker run -d -p 7860:7860 --gpus all \
+   -e GOOGLE_API_KEY=your_api_key_here \
+   dvmht/anvesana:latest
+   ```
+Make sure to provide your Google AI Studio API key to the container in the `GOOGLE_API_KEY` environment variable.
 
 
 ### Example Queries
