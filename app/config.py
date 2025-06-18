@@ -10,3 +10,4 @@ MODEL_WEIGHTS_DIR = "weights/"
 PERSIST_DIR = "data/store/chroma_db"
 if not os.path.exists(PERSIST_DIR):
     os.makedirs(PERSIST_DIR)
+RAW_DATA_PATH = "data/store/raw_data.json"

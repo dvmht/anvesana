@@ -1,10 +1,10 @@
 import json
 
 from app.rag import EmbeddingModel
+from app.config import RAW_DATA_PATH
 from data.chunk import chunk_data
 from data.ingest import get_all_data, get_all_pages
 
-RAW_DATA_PATH = "data/store/raw_data.json"
 
 
 def save_raw_data(data: list[dict], file_path: str) -> None:
