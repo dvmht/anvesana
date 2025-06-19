@@ -35,10 +35,10 @@ def read_raw_data(file_path: str) -> list[dict]:
     """
 
     try:
-        logging.info(f"Reading raw data from {file_path}...")
+        logger.info(f"Reading raw data from {file_path}...")
         with open(file_path, "r", encoding="utf-8") as f:
             return json.load(f)
-        logging.info(f"Raw data read successfully from {file_path}.")
+        logger.info(f"Raw data read successfully from {file_path}.")
     except FileNotFoundError:
         logger.error(f"File {file_path} not found. Please run the data ingestion first.")
         return []
