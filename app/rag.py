@@ -21,6 +21,7 @@ class EmbeddingModel:
 
         Args:
             model_name (str): The name of the embedding model to use. Default: "all-mpnet-base-v2".
+            collection_name (str): The name of the collection for the vector store of this embedding model.
         """
         self.model_name = model_name
         self.collection_name = collection_name
@@ -30,6 +31,10 @@ class EmbeddingModel:
         self.load_model()
 
     def load_model(self):
+        """
+        Loads the embedding model specified by the model_name into memory.
+        If the model is already loaded, it does nothing.
+        """
         if self.embedding_model is not None:
             logger.debug(f"Model {self.model_name} is already loaded.")
             return
