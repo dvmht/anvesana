@@ -15,7 +15,7 @@ Derived from the root verb "anveṣ" (अन्वेष), which means "to searc
 In the context of Vedic texts, Anveṣaṇā refers to the process of searching for
 knowledge, wisdom, and understanding within these ancient scriptures.
 
-Anvesana is tool that allows you to search through Vedic texts using natural language queries, using retrieval-augmented-generation to provide accurate and relevant answers.  
+Anvesana is tool that allows you to explore Vedic texts using natural language queries, using retrieval-augmented-generation to provide accurate and relevant answers.  
 It is designed to help you find information quickly and efficiently, making it easier to explore the vast knowledge contained within Vedic literature.
 
 

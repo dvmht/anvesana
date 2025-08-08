@@ -58,7 +58,7 @@ description = """
         </td>
         <td width="60%" style="border: none;">
         <div class="column second-column">
-            <p>Anvesana is tool that allows you to search through Vedic texts using natural language queries,
+            <p>Anvesana is tool that allows you to explore Vedic texts using natural language queries,
                 using retrieval-augmented-generation to provide accurate and relevant answers.
                 It is designed to help you find information quickly and efficiently, making
                 it easier to explore the vast knowledge contained within Vedic literature.</p>
@@ -81,7 +81,7 @@ description = """
 
 app = gr.ChatInterface(
     fn=get_response,
-    title="Anveṣaṇā: Search through Vedic Texts with ease.",
+    title="Anveṣaṇā: Explore Vedic Texts with ease.",
     description=description,
     type="messages",
     flagging_mode="manual",
